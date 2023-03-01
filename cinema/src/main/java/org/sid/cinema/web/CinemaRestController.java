@@ -29,7 +29,7 @@ public class CinemaRestController {
 		Film f=filmRepository.findById(id).get(); 
 		String photoName=f.getPhoto();
 		File file=new File(System.getProperty("user.home")+
-				"/cinema/images/"+photoName);
+				"/cinemas/images/"+photoName);
 		Path path=Paths.get(file.toURI());
 		return Files.readAllBytes(path);
 		

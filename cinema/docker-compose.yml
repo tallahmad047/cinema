@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  app:
+    image: 'cinemas.jar:latest'
+    build:
+      context: src/main/java/org/sid/cinema
+    container_name: app
+    ports:
+      - 8787
+    depends_on:
+      - db
+
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/cinema?serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=tqll
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create
+
+  db:
+    image: 'postgres:13.1-alpine'
+    container_name: db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=tqll
